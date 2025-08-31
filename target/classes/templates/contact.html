@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="translate-btn" id="contactTitle">Contact Us</h2>
+    <p class="translate-btn" id="contactSubtitle">If you have any questions, feel free to contact us:</p>
+
+    <ul class="list-group">
+        <li class="list-group-item"><strong id="emailLabel" class="translate-btn">Email:</strong> talbz7586@gmail.com</li>
+        <li class="list-group-item"><strong id="phoneLabel" class="translate-btn">Phone:</strong> +222 42844294</li>
+    </ul>
+
+
+    <a href="/events" class="btn btn-primary mt-3 translate-btn" id="backHomeBtn">Back to Home</a>
+
+</div>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/21.6.3/i18next.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        i18next.init({
+            lng: localStorage.getItem('lang') || 'en',
+            resources: {
+                en: {
+                    translation: {
+                        contactTitle: "Contact Us",
+                        contactSubtitle: "If you have any questions, feel free to contact us:",
+                        backHomeBtn: "Back to Home",
+                        emailLabel: "Email:",
+                        phoneLabel: "Phone:"
+                    }
+                },
+                fr: {
+                    translation: {
+                        contactTitle: "Nous contacter",
+                        contactSubtitle: "Si vous avez des questions, n'hésitez pas à nous contacter :",
+                        backHomeBtn: "Retour à l'accueil",
+                        emailLabel: "E-mail :",
+                        phoneLabel: "Téléphone :"
+                    }
+                },
+                ar: {
+                    translation: {
+                        contactTitle: "اتصل بنا",
+                        contactSubtitle: "إذا كانت لديك أي أسئلة، لا تتردد في الاتصال بنا:",
+                        backHomeBtn: "العودة إلى الصفحة الرئيسية",
+                        emailLabel: "البريد الإلكتروني:",
+                        phoneLabel: "الهاتف:"
+                    }
+                }
+            }
+        }, function () {
+            updateTranslations();
+        });
+
+        function updateTranslations() {
+            document.querySelectorAll('.translate-btn').forEach(function (elem) {
+                if (elem.id) {
+                    elem.textContent = i18next.t(elem.id);
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
